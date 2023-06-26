@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "concurrently": "^8.2.0",
+    "docx-pdf": "^0.0.1",
+    "docxtemplater": "^3.37.11",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "libreoffice-convert": "^1.4.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^20.3.1",
+    "typescript": "^5.1.3"
+  },
+  "name": "doctopdf-project",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"tsc -w\" \"nodemon src/app.ts\"",
+    "devv": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+
+    .loading-spinner {
+      display: none;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .loading-spinner img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .success-message,
+    .error-message {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .success-message {
+      color: green;
+    }
+
+    .error-message {
+      color: red;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loadingSpinner = document.querySelector('.loading-spinner');
+      const formElements = document.querySelectorAll('form');
+
+      formElements.forEach((form) => {
+        form.addEventListener('submit', () => {
+          loadingSpinner.style.display = 'block';
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Document Converter</h1>
+
+  <form action="/convert-docx-to-pdf" method="POST" enctype="multipart/form-data">
+    <input type="file" name="docxFile">
+    <button type="submit">Convert to PDF</button>
+  </form>
+
+  <form action="/convert-pdf-to-docx" method="POST" enctype="multipart/form-data">
+    <input type="file" name="pdfFile">
+    <button type="submit">Convert to DOCX</button>
+  </form>
+
+  <div class="loading-spinner">
+    <img src="/loading-spinner.gif" alt="Loading Spinner">
+    <p>Converting File...</p>
+  </div>
+
+  <% if (success) { %>
+    <p class="success-message">Conversion successful! <a href="<%= downloadLink %>">Download</a></p>
+  <% } else if (error) { %>
+    <p class="error-message"><%= error %></p>
+  <% } %>
+</body>
+</html>
